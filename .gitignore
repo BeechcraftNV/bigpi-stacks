@@ -1,0 +1,13 @@
+# Ignore everything by default
+*
+
+# Track this file and README
+!.gitignore
+!README.md
+
+# Track compose definitions
+!compose/
+!compose/*.yml
+
+# Ignore runtime config/data volumes
+configs/

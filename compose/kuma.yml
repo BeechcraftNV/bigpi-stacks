@@ -1,0 +1,17 @@
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    restart: unless-stopped
+    volumes:
+      - /opt/docker/configs/uptime-kuma:/app/data
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.kuma.rule=Host(`kuma.lab`)
+      - traefik.http.routers.kuma.entrypoints=web
+      - traefik.http.services.kuma.loadbalancer.server.port=3001
+
+networks:
+  proxy:
+    external: true
