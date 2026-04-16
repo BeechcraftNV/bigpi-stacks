@@ -1,13 +1,22 @@
-# Ignore everything by default
+# 1. Ignore everything by default
 *
 
-# Track this file and README
+# 2. Allow root-level configuration and documentation
 !.gitignore
 !README.md
+!GEMINI.md
+!.env.example
 
-# Track compose definitions
+# 3. Allow only specific files in the compose directory
 !compose/
 !compose/*.yml
+!compose/*.yaml
+!compose/README.md
 
-# Ignore runtime config/data volumes
-configs/
+# 4. Explicitly ignore sensitive or generated files (even if they match above)
+.env
+configs/**
+.DS_Store
+*.log
+*.backup
+*.tmp

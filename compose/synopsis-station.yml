@@ -1,0 +1,18 @@
+services:
+  n8n:
+    # Use the official v2 Debian tag
+    image: docker.n8n.io/n8nio/n8n:1.45.1
+    container_name: synopsis-n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_COMMUNITY_PACKAGES_ENABLED=true
+      - N8N_HOST=bigpi.${BASE_DOMAIN}
+      - NODE_ENV=production
+      - WEBHOOK_URL=http://bigpi.${BASE_DOMAIN}:5678/
+      - GENERIC_TIMEZONE=${TZ}
+      - N8N_RUNNERS_ENABLED=false
+    volumes:
+      - ${CONFIG_ROOT}/n8n:/home/node/.n8n
+      - /mnt/huge_spin_drive/youtube_synopses:/data/synopses

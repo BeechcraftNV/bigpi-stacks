@@ -1,0 +1,19 @@
+services:
+  grav:
+    image: linuxserver/grav:1.7.46-ls110
+    container_name: grav
+    restart: unless-stopped
+    volumes:
+      - ${CONFIG_ROOT}/grav:/config
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.grav.rule=Host(`grav.${BASE_DOMAIN}`)
+      - traefik.http.routers.grav.entrypoints=websecure
+      - traefik.http.routers.grav.tls=true
+      - traefik.http.services.grav.loadbalancer.server.port=80
+
+networks:
+  proxy:
+    external: true

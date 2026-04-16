@@ -1,0 +1,21 @@
+services:
+  dashboard:
+    image: nginx:1.25-alpine
+    container_name: dashboard
+    volumes:
+      - ${CONFIG_ROOT}/dashboard/index.html:/usr/share/nginx/html/index.html:ro
+    ports:
+      - "8888:80"
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard.rule=Host(`dashboard.${BASE_DOMAIN}`)"
+      - "traefik.http.routers.dashboard.entrypoints=websecure"
+      - "traefik.http.routers.dashboard.tls=true"
+      - "traefik.http.services.dashboard.loadbalancer.server.port=80"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
