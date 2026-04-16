@@ -17,6 +17,7 @@ This workspace manages the Docker Compose stacks for a local home lab environmen
 | Service | Compose File | Hostname | Description |
 | :--- | :--- | :--- | :--- |
 | **Traefik** | `traefik.yml` | `traefik.lab` | Core reverse proxy (HTTPS enabled) |
+| **Docker Proxy** | `docker-proxy.yml` | `docker-proxy.lab` | Secure read-only socket proxy |
 | **Grav** | `grav.yml` | `grav.lab` | Flat-file CMS |
 | **Uptime Kuma** | `kuma.yml` | `kuma.lab` | Uptime & service monitoring |
 | **Dashboard** | `nginx.yml` | `dashboard.lab` | Landing page (consolidated config) |
